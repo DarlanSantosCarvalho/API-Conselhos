@@ -1,6 +1,16 @@
-async function aconselhar(){
+async function aconselhar() {
     const response = await fetch(`https://api.adviceslip.com/advice`)
-    return await response.json()
+    console.log(await response.json())
 }
 
-console.log(await aconselhar())
+function gerarConselho() {
+    aconselhar().then(dadosConselho => {
+        let conselhoGerado = `<h1> ${dadosConselho.advice} </h1>`
+        document.getElementById('conselho').innerHTML = `${conselhoGerado}`
+    })
+}
+
+
+aconselhar()
+
+gerarConselho()
